@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Countdown to Scooter Christmas Pajama Party</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+<img src="logo.png" class="logo" alt="Channel Logo">
+<h1>Scooter Christmas Pajama Party</h1>
+<h2>Going Live in:</h2>
+<div class="countdown" id="countdown">Loading...</div>
+
+<script>
+const countdownDate = new Date("Dec 20, 2025 15:00:00").getTime();
+const countdownEl = document.getElementById('countdown');
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+
+  if(distance < 0) {
+    countdownEl.innerHTML = "We Are Live!";
+    clearInterval(interval);
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 *24)) / (1000*60*60));
+  const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+  const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+  countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+const interval = setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+</body>
+</html>
